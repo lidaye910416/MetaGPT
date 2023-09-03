@@ -2,7 +2,11 @@
 
 import asyncio
 
+import sys
+sys.path.append('/Users/jasonlee/Desktop/practicalProject/MetaGPT/')
+
 from metagpt.roles.researcher import RESEARCH_PATH, Researcher
+from metagpt.tools import SearchEngineType
 
 
 async def main():

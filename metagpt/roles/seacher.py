@@ -24,14 +24,14 @@ class Searcher(Role):
 
     async def _act_sp(self) -> Message:
         logger.info(f"{self._setting}: ready to {self._rc.todo}")
-        response = await self._rc.todo.run(self._rc.memory.get(k=0))
+        response = await self._rc.todo.run(self._rc.memory.get(k=0)) #todo里是action， memory里message
         # logger.info(response)
         if isinstance(response, ActionOutput):
             msg = Message(content=response.content, instruct_content=response.instruct_content,
                             role=self.profile, cause_by=type(self._rc.todo))
         else:
             msg = Message(content=response, role=self.profile, cause_by=type(self._rc.todo))
-        self._rc.memory.add(msg)
+        self._rc.memory.add(msg) #将之前的回答，变为Message，输入memory中。
 
     async def _act(self) -> Message:
         return await self._act_sp()

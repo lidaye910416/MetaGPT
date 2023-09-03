@@ -114,6 +114,7 @@ class SearchAndSummarize(Action):
         if no_serpapi and no_google and no_serper:
             logger.warning('Configure one of SERPAPI_API_KEY, SERPER_API_KEY, GOOGLE_API_KEY to unlock full feature')
             return ""
+        #
         
         query = context[-1].content
         # logger.debug(query)

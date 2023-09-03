@@ -7,8 +7,13 @@
 """
 import asyncio
 
+import sys
+sys.path.append('/Users/jasonlee/Desktop/practicalProject/MetaGPT/')
+print(sys.path)
+
 from metagpt.llm import LLM, Claude
 from metagpt.logs import logger
+
 
 
 async def main():

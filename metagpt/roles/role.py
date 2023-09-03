@@ -204,7 +204,7 @@ class Role:
 
     async def _react(self) -> Message:
         """先想，然后再做"""
-        await self._think()
+        await self._think()#确定todo什么
         logger.debug(f"{self._setting}: {self._rc.state=}, will do {self._rc.todo}")
         return await self._act()
 

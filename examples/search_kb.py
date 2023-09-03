@@ -5,6 +5,9 @@
 """
 import asyncio
 
+import sys
+sys.path.append('/Users/jasonlee/Desktop/practicalProject/MetaGPT/')
+
 from metagpt.const import DATA_PATH
 from metagpt.document_store import FaissStore
 from metagpt.logs import logger

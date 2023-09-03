@@ -23,6 +23,8 @@ class RawMessage(TypedDict):
 @dataclass
 class Message:
     """list[<role>: <content>]"""
+    #使用dataclass装饰器进行类参数初始化，比BaseModel进行初始化要宽松一些，使用BaseModel申明参数
+    #只能使用 key argument，对参数进行声明。
     content: str
     instruct_content: BaseModel = field(default=None)
     role: str = field(default='user')  # system / user / assistant
