@@ -26,8 +26,12 @@ RPM: 10
 
 #### for Search
 
+## Supported values: serpapi/google/serper/ddg
+#SEARCH_ENGINE: serpapi
+
 ## Visit https://serpapi.com/ to get key.
 #SERPAPI_API_KEY: "YOUR_API_KEY"
+
 ## Visit https://console.cloud.google.com/apis/credentials to get key.
 GOOGLE_API_KEY: "AIzaSyDU3EcaBX_fumwZg4QUTbxRAGmupZzJ1ys"
 ## Visit https://programmablesearchengine.google.com/controlpanel/create to get id.
@@ -64,9 +68,9 @@ SD_T2I_API: "/sdapi/v1/txt2img"
 #PUPPETEER_CONFIG: "./config/puppeteer-config.json"
 #MMDC: "./node_modules/.bin/mmdc"
 
-### for update_costs & calc_usage
-UPDATE_COSTS: false
-CALC_USAGE: false
+
+### for calc_usage
+# CALC_USAGE: false
 
 ### for Research
 MODEL_FOR_RESEARCHER_SUMMARY: gpt-3.5-turbo
