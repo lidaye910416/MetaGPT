@@ -15,6 +15,8 @@ from metagpt.tools.search_engine import SearchEngine
 from metagpt.tools.web_browser_engine import WebBrowserEngine, WebBrowserEngineType
 from metagpt.utils.text import generate_prompt_chunk, reduce_message_length
 
+from metagpt.tools import SearchEngineType
+
 LANG_PROMPT = "Please respond in {language}."
 
 RESEARCH_BASE_SYSTEM = """You are an AI critical thinker research assistant. Your sole purpose is to write well \
@@ -80,13 +82,15 @@ class CollectLinks(Action):
     def __init__(
         self,
         name: str = "",
+        engine: SearchEngineType  = None,
         *args,
         rank_func: Callable[[list[str]], None] | None = None,
         **kwargs,
     ):
         super().__init__(name, *args, **kwargs)
+        self.engine = engine
         self.desc = "Collect links from a search engine."
-        self.search_engine = SearchEngine()
+        self.search_engine = SearchEngine(self.engine) #这里存在一个bug，SearchEngine()无法选择SearchEngine的类型
         self.rank_func = rank_func
 
     async def run(

@@ -10,6 +10,7 @@ from metagpt.const import RESEARCH_PATH
 from metagpt.logs import logger
 from metagpt.roles import Role
 from metagpt.schema import Message
+from metagpt.tools import SearchEngineType
 
 
 class Report(BaseModel):
@@ -27,10 +28,11 @@ class Researcher(Role):
         goal: str = "Gather information and conduct research",
         constraints: str = "Ensure accuracy and relevance of information",
         language: str = "en-us",
+        engine: SearchEngineType = SearchEngineType.SERPAPI_GOOGLE,
         **kwargs,
     ):
         super().__init__(name, profile, goal, constraints, **kwargs)
-        self._init_actions([CollectLinks(name), WebBrowseAndSummarize(name), ConductResearch(name)])
+        self._init_actions([CollectLinks(name,engine), WebBrowseAndSummarize(name), ConductResearch(name)])
         self.language = language
         if language not in ("en-us", "zh-cn"):
             logger.warning(f"The language `{language}` has not been tested, it may not work.")
