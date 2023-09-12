@@ -38,8 +38,7 @@ class BaseGPTAPI(BaseChatbot):
 
     async def aask(self, msg: str, system_msgs: Optional[list[str]] = None) -> str:
         if system_msgs:
-            message = self._system_msgs(system_msgs) + [self._user_msg(msg)]
-            #system_msgs, 主要来自role里面的角色设定提示词，以及action中的提示词。
+            message = self._system_msgs(system_msgs) + [self._user_msg(msg)]#system_msgs, 主要来自role里面的角色设定提示词，以及action中的提示词。
         else:
             message = [self._default_system_msg(), self._user_msg(msg)]
         rsp = await self.acompletion_text(message, stream=True)

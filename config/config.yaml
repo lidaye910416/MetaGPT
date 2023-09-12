@@ -6,8 +6,8 @@
 ## If the official OPENAI_API_BASE is not available, we recommend using the [openai-forward](https://github.com/beidongjiedeguang/openai-forward).
 ## Or, you can configure OPENAI_PROXY to access official OPENAI_API_BASE.
 OPENAI_API_BASE: "https://api.openai-forward.com/v1"
-OPENAI_PROXY: "http://127.0.0.1:8118"
-OPENAI_API_KEY: "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"
+# OPENAI_PROXY: "http://127.0.0.1:8118"
+OPENAI_API_KEY: "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"
 # OPENAI_API_KEY: "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"
 OPENAI_API_MODEL: "gpt-3.5-turbo"
 MAX_TOKENS: 1500

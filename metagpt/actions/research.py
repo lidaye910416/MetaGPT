@@ -90,7 +90,7 @@ class CollectLinks(Action):
         super().__init__(name, *args, **kwargs)
         self.engine = engine
         self.desc = "Collect links from a search engine."
-        self.search_engine = SearchEngine(self.engine) #这里存在一个bug，SearchEngine()无法选择SearchEngine的类型
+        self.search_engine = SearchEngine(self.engine) #添加功能，这里应该可以自主选择engine
         self.rank_func = rank_func
 
     async def run(
