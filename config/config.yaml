@@ -7,8 +7,8 @@
 ## Or, you can configure OPENAI_PROXY to access official OPENAI_API_BASE.
 OPENAI_API_BASE: "https://api.openai-forward.com/v1"
 # OPENAI_PROXY: "http://127.0.0.1:8118"
-OPENAI_API_KEY: "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"
-# OPENAI_API_KEY: "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"
+# OPENAI_API_KEY: "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"
+OPENAI_API_KEY: "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"
 OPENAI_API_MODEL: "gpt-3.5-turbo"
 MAX_TOKENS: 1500
 RPM: 10

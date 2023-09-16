@@ -24,8 +24,8 @@ written, critically acclaimed, objective and structured reports on the given tex
 
 RESEARCH_TOPIC_SYSTEM = "You are an AI researcher assistant, and your research topic is:\n#TOPIC#\n{topic}"
 
-SEARCH_TOPIC_PROMPT = """Please provide up to 2 necessary keywords related to your research topic for Google search. \
-Your response must be in JSON format, for example: ["keyword1", "keyword2"]."""
+SEARCH_TOPIC_PROMPT = """Please provide up to 3 necessary keywords related to your research topic for Google search. \
+Your response must be in JSON format, for example: ["keyword1", "keyword2","keyword3"]."""
 
 SUMMARIZE_SEARCH_PROMPT = """### Requirements
 1. The keywords related to your research topic and the search results are shown in the "Search Result Information" section.
@@ -72,7 +72,7 @@ above. The report must meet the following requirements:
 - Focus on directly addressing the chosen topic.
 - Ensure a well-structured and in-depth presentation, incorporating relevant facts and figures where available.
 - Present data and findings in an intuitive manner, utilizing feature comparative tables, if applicable.
-- The report should have a minimum word count of 2,000 and be formatted with Markdown syntax following APA style guidelines.
+- The report should have a minimum word count of 4000 and be formatted with Markdown syntax following APA style guidelines.
 - Include all source URLs in APA format at the end of the report.
 '''
 
@@ -157,6 +157,9 @@ class CollectLinks(Action):
         """
         max_results = max(num_results * 2, 6)
         results = await self.search_engine.run(query, max_results=max_results, as_string=False)
+        if len(results) == 0:
+            #存在没有返回链接的情况。
+            return [''] 
         _results = "\n".join(f"{i}: {j}" for i, j in zip(range(max_results), results))
         prompt = COLLECT_AND_RANKURLS_PROMPT.format(topic=topic, query=query, results=_results)
         logger.debug(prompt)

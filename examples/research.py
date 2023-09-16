@@ -10,7 +10,7 @@ from metagpt.tools import SearchEngineType
 
 
 async def main():
-    topic = "数字公共基础设施 vs. 数字中国"
+    topic = "数字中国建设"
     role = Researcher(language="zh-cn", engine=SearchEngineType.DIRECT_GOOGLE) #最新版本可以选择中文输出，zh-cn
     await role.run(topic)
     print(f"save report to {RESEARCH_PATH / f'{topic}.md'}.")
