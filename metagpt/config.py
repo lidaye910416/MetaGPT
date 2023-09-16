@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-提供配置，单例
+Provide configuration, singleton
 """
 import os
 
@@ -28,7 +28,7 @@ class NotConfiguredException(Exception):
 
 class Config(metaclass=Singleton):
     """
-    常规使用方法：
+    Regular usage method:
     config = Config("config.yaml")
     secret_key = config.get_key("MY_SECRET_KEY")
     print("Secret key:", secret_key)
@@ -59,6 +59,7 @@ class Config(metaclass=Singleton):
         self.openai_api_rpm = self._get("RPM", 3)
         self.openai_api_model = self._get("OPENAI_API_MODEL", "gpt-4")
         self.max_tokens_rsp = self._get("MAX_TOKENS", 2048)
+        self.deployment_name = self._get('DEPLOYMENT_NAME')
         self.deployment_id = self._get("DEPLOYMENT_ID")
 
         self.claude_api_key = self._get("Anthropic_API_KEY")
@@ -82,16 +83,18 @@ class Config(metaclass=Singleton):
         self.calc_usage = self._get("CALC_USAGE", True)
         self.model_for_researcher_summary = self._get("MODEL_FOR_RESEARCHER_SUMMARY")
         self.model_for_researcher_report = self._get("MODEL_FOR_RESEARCHER_REPORT")
+        self.mermaid_engine = self._get("MERMAID_ENGINE", 'nodejs')
+        self.pyppeteer_executable_path = self._get("PYPPETEER_EXECUTABLE_PATH", '')
 
     def _init_with_config_files_and_env(self, configs: dict, yaml_file):
-        """从config/key.yaml / config/config.yaml / env三处按优先级递减加载"""
+        """Load from config/key.yaml, config/config.yaml, and env in decreasing order of priority"""
         configs.update(os.environ)
 
         for _yaml_file in [yaml_file, self.key_yaml_file]:
             if not _yaml_file.exists():
                 continue
 
-            # 加载本地 YAML 文件
+            # Load local YAML file
             with open(_yaml_file, "r", encoding="utf-8") as file:
                 yaml_data = yaml.safe_load(file)
                 if not yaml_data:
@@ -103,7 +106,7 @@ class Config(metaclass=Singleton):
         return self._configs.get(*args, **kwargs)
 
     def get(self, key, *args, **kwargs):
-        """从config/key.yaml / config/config.yaml / env三处找值，找不到报错"""
+        """Search for a value in config/key.yaml, config/config.yaml, and env; raise an error if not found"""
         value = self._get(key, *args, **kwargs)
         if value is None:
             raise ValueError(f"Key '{key}' not found in environment variables or in the YAML file")

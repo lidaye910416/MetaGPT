@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 def get_project_root():
-    """逐级向上寻找项目根目录"""
+    """Search upwards to find the project root directory."""
     current_path = Path.cwd()
     while True:
         if (current_path / '.git').exists() or \
@@ -33,5 +33,6 @@ API_QUESTIONS_PATH = UT_PATH / "files/question/"
 YAPI_URL = "http://yapi.deepwisdomai.com/"
 TMP = PROJECT_ROOT / 'tmp'
 RESEARCH_PATH = DATA_PATH / "research"
+TUTORIAL_PATH = DATA_PATH / "tutorial_docx"
 
 MEM_TTL = 24 * 30 * 3600
